@@ -34,10 +34,12 @@ const createProduct = async (req: Request, res: Response) => {
 // get all products
 const getAllProducts = async (req: Request, res: Response) => {
   try {
-    const result = await getAllProductsFromDb();
+    const result = await getAllProductsFromDb(req.query);
     res.status(200).json({
       success: true,
-      message: "Products fetched successfully!",
+      message: !req.query.searchTerm
+        ? "Products fetched successfully!"
+        : `Products matching search term '${req.query.searchTerm}' fetched successfully!`,
       data: result,
     });
   } catch (err: any) {
