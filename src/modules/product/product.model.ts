@@ -23,10 +23,13 @@ const inventorySchema = new Schema({
   },
 });
 
+
+//! Product Schema
 const productSchema = new Schema<IProduct>({
   name: {
     type: String,
     required: true,
+    trim: true,
   },
   description: {
     type: String,
@@ -41,17 +44,18 @@ const productSchema = new Schema<IProduct>({
     required: true,
   },
   tags: {
-    type: [String], // (array of strings)
+    type: [String], // array of strings
     required: true,
   },
   variants: {
-    type: [variantSchema], // (array of objects)
+    type: [variantSchema], // array of objects
     required: true,
   },
   inventory: {
-    type: inventorySchema,
+    type: inventorySchema, // object
     required: true,
   },
 });
 
+// Create the Product model
 export const Product = mongoose.model<IProduct>("Product", productSchema);
