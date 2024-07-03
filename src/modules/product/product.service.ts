@@ -1,29 +1,42 @@
-import { ObjectId } from "mongoose";
 import IProduct from "./product.interface";
-import {Product} from "./product.model";
+import { Product } from "./product.model";
 
-//
+// create a new product
 const createProductToDb = async (payload: IProduct) => {
   const result = await Product.create(payload);
   return result;
 };
 
-//
+// get all products
 const getAllProductsFromDb = async () => {
   const result = await Product.find();
   return result;
-}
+};
 
-//
-const getProductByIdFromDb = async (id: string) => { 
-  const result = await Product.findOne({ _id:id });
+// get a single product by id
+const getProductByIdFromDb = async (id: string) => {
+  const result = await Product.findOne({ _id: id });
   return result;
-}
+};
 
-//
-const deleteProductFromDb = async(id:string) => {
-  const result = await Product.deleteOne({ _id:id });
+// update a single product
+const updateProductToDb = async (id: string, updatedData: IProduct) => {
+  // const product = await Product.findOne({ _id: id });
+
+  const result = await Product.findByIdAndUpdate(id, updatedData);
   return result;
-}
+};
 
-export { createProductToDb,getAllProductsFromDb, getProductByIdFromDb,deleteProductFromDb };
+// delete a product by id
+const deleteProductFromDb = async (id: string) => {
+  const result = await Product.deleteOne({ _id: id });
+  return result;
+};
+
+export {
+  createProductToDb,
+  deleteProductFromDb,
+  getAllProductsFromDb,
+  getProductByIdFromDb,
+  updateProductToDb,
+};
