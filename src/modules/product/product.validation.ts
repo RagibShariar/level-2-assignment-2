@@ -12,8 +12,8 @@ const inventoryValidationSchema = z.object({
 
 //! Product Zod Validation
 const productValidationSchema = z.object({
-  name: z.string().trim(),
-  description: z.string().trim(),
+  name: z.string().trim().min(1, {message: "name is required"}),
+  description: z.string().trim().min(1, {message: "description is required"}),
   price: z.number(),
   category: z.string().trim(),
   tags: z.string().array(), // array of strings
