@@ -15,9 +15,15 @@ const getAllProductsFromDb = async () => {
 }
 
 //
-const getProductByIdFromDb = async (id: ObjectId) => { 
+const getProductByIdFromDb = async (id: string) => { 
   const result = await Product.findOne({ _id:id });
   return result;
 }
 
-export { createProductToDb,getAllProductsFromDb, getProductByIdFromDb };
+//
+const deleteProductFromDb = async(id:string) => {
+  const result = await Product.deleteOne({ _id:id });
+  return result;
+}
+
+export { createProductToDb,getAllProductsFromDb, getProductByIdFromDb,deleteProductFromDb };

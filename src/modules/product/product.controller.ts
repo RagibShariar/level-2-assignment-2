@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createProductToDb, getAllProductsFromDb, getProductByIdFromDb } from "./product.service";
+import { createProductToDb, deleteProductFromDb, getAllProductsFromDb, getProductByIdFromDb } from "./product.service";
 import productValidationSchema from "./product.validation";
 
 
@@ -63,4 +63,25 @@ const getProductById = async (req: Request, res: Response) => {
 
 }
 
-export { createProduct, getAllProducts, getProductById };
+// delete a product by id
+const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const result = await deleteProductFromDb(productId);
+    
+    res.status(200).json({
+      success: true,
+      message: "Product deleted successfully!",
+      data: result,
+    });
+
+  } catch (err:any) {
+    res.status(404).json({
+      success: false,
+      message:err?.error?.issues[0]?.message ||"Something went wrong",
+      error: err,
+    });
+  }
+}
+
+export { createProduct, getAllProducts, getProductById, deleteProduct };
