@@ -17,12 +17,11 @@ const inventorySchema = new Schema({
     type: Number,
     required: true,
   },
-  inventory: {
+  inStock: {
     type: Boolean,
-    required: true,
+    default: true,
   },
 });
-
 
 //! Product Schema
 const productSchema = new Schema<IProduct>({

@@ -7,11 +7,11 @@ const variantValidationSchema = z.object({
 
 const inventoryValidationSchema = z.object({
   quantity: z.number(),
-  inventory: z.boolean(),
+  inStock: z.boolean().default(true),
 });
 
 //! Product Zod Validation
-export const productValidationSchema = z.object({
+const productValidationSchema = z.object({
   name: z.string().trim(),
   description: z.string().trim(),
   price: z.number(),
@@ -20,3 +20,5 @@ export const productValidationSchema = z.object({
   variants: z.array(variantValidationSchema), // array of objects
   inventory: inventoryValidationSchema.required(),
 });
+
+export default productValidationSchema;

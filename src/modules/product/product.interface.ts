@@ -13,8 +13,8 @@ type IProduct = {
   description: string;
   price: number;
   category: string;
-  tags: string[]; // (array of strings)
-  variants: Variant[]; // (array of objects)
+  tags: string[]; // array of strings
+  variants: Variant[]; // array of objects
   inventory: Inventory;
 };
 
