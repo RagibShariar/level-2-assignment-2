@@ -15,5 +15,6 @@ productRouter.get("/", getAllProducts);
 productRouter.get("/:productId", getProductById);
 productRouter.put("/:productId", updateProduct);
 productRouter.delete("/:productId", deleteProduct);
+// productRouter.delete(`?searchTerm=${searchTerm}`, );
 
 export default productRouter;

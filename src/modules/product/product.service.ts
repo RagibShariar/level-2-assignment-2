@@ -8,8 +8,15 @@ const createProductToDb = async (payload: IProduct) => {
 };
 
 // get all products
-const getAllProductsFromDb = async () => {
-  const result = await Product.find();
+const getAllProductsFromDb = async (query: Record<string, unknown>) => {
+  // { name: {$regex: query.searchTerm, $option:i} }
+  let searchTerm = "";
+  if (query?.searchTerm) {
+    searchTerm = query?.searchTerm as string;
+  }
+  const result = await Product.find({
+    name: { $regex: searchTerm, $options: "i" },
+  });
   return result;
 };
 
