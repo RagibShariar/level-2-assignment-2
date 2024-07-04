@@ -26,9 +26,14 @@ const createOrderToDb = async (orderData: IOrder) => {
   if (existingData.inventory.quantity <= 0) {
     existingData.inventory.inStock = false;
   }
+
+  // calculate price
+  const price = orderData.quantity * existingData.price;
+  const newOrderData = { ...orderData, price };
+
   await Product.findByIdAndUpdate(orderData.productId, existingData);
 
-  const result = await Order.create(orderData);
+  const result = await Order.create(newOrderData);
   return result;
 };
 
