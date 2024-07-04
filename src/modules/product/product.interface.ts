@@ -1,3 +1,5 @@
+import { Model } from "mongoose";
+
 type Variant = {
   type: string;
   value: string;
@@ -8,7 +10,7 @@ type Inventory = {
   inStock: boolean;
 };
 
-type IProduct = {
+export type IProduct = {
   name: string;
   description: string;
   price: number;
@@ -18,4 +20,6 @@ type IProduct = {
   inventory: Inventory;
 };
 
-export default IProduct;
+export interface ProductModel extends Model<IProduct> {
+  isExists(id: Types.ObjectId): Promise<IProduct | null>;
+}
