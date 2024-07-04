@@ -13,7 +13,7 @@ const createOrderToDb = async (orderData: IOrder) => {
 
   // check stock is available or not
   if (!existingData?.inventory?.inStock) {
-    throw new Error(`Product currently out of stock`);
+    throw new Error(`Product is currently out of stock`);
   }
 
   // check inventory is available or not
@@ -23,7 +23,7 @@ const createOrderToDb = async (orderData: IOrder) => {
     );
 
   existingData.inventory.quantity -= orderData.quantity;
-  if (existingData.inventory.quantity === 0) {
+  if (existingData.inventory.quantity <= 0) {
     existingData.inventory.inStock = false;
   }
   await Product.findByIdAndUpdate(orderData.productId, existingData);
@@ -31,4 +31,10 @@ const createOrderToDb = async (orderData: IOrder) => {
   const result = await Order.create(orderData);
   return result;
 };
-export { createOrderToDb };
+
+// get all orders from database
+const getAllOrdersFromDb = async () => {
+  const result = await Order.find();
+  return result;
+};
+export { createOrderToDb, getAllOrdersFromDb };
