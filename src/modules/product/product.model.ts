@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import IProduct, { ProductModel } from "./product.interface";
+import { IProduct } from "./product.interface";
 
 const variantSchema = new Schema({
   type: {
@@ -24,7 +24,7 @@ const inventorySchema = new Schema({
 });
 
 //! Product Schema
-const productSchema = new Schema<IProduct, ProductModel>({
+const productSchema = new Schema<IProduct>({
   name: {
     type: String,
     required: true,
@@ -56,14 +56,5 @@ const productSchema = new Schema<IProduct, ProductModel>({
   },
 });
 
-// Mongoose Static methods
-productSchema.statics.isExists = async (id: any) => {
-  const existingData = await Product.findOne({ _id: id });
-  return existingData;
-};
-
 // Create the Product model
-export const Product = mongoose.model<IProduct, ProductModel>(
-  "Product",
-  productSchema
-);
+export const Product = mongoose.model<IProduct>("Product", productSchema);

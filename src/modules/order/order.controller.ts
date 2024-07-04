@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
+import { IOrder } from "./order.interface";
 import { createOrderToDb, getAllOrdersFromDb } from "./order.service";
 import orderValidationSchema from "./order.validation";
 
 //
 const createOrder = async (req: Request, res: Response) => {
   try {
-    const orderData = req.body;
+    const orderData: IOrder = req.body;
     const zodParsedData = orderValidationSchema.parse(orderData);
     const result = await createOrderToDb(zodParsedData);
 
@@ -17,7 +18,7 @@ const createOrder = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(400).json({
       success: false,
-      message: err.message || "failed",
+      message: err.message || "Something went wrong",
       error: err,
     });
   }

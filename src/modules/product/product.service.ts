@@ -1,4 +1,4 @@
-import IProduct from "./product.interface";
+import { IProduct } from "./product.interface";
 import { Product } from "./product.model";
 
 // create a new product

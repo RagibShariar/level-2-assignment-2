@@ -1,4 +1,4 @@
-# Level-2 Assignment-2 
+# Level-2 Assignment-2
 
 ## Installation
 
@@ -7,8 +7,7 @@ To install the application, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/order-management-api.git
-   cd order-management-api
+   git clone https://github.com/RagibShariar/level-2-assignment-2.git
    ```
 
 2. **Install the dependencies:**
@@ -54,9 +53,7 @@ PORT=8000
 DATABASE_URL="Add your connection string"
 ```
 
-## API Endpoints
-
-## Product Management
+## Product Management - API Endpoints
 
 ### **1. Create a New Product**
 
@@ -88,9 +85,8 @@ DATABASE_URL="Add your connection string"
 - **Endpoint**: `/api/products?searchTerm=iphone`
 - **Method: GET**
 
-## Order Management
+## Order Management - API Endpoints
 
-### **Order Management API Endpoints**
 
 ### **1.Create a New Order**
 
@@ -113,8 +109,8 @@ When creating new order (**`/api/orders`** ) ,reduce the `quantity` of the order
 
 ### **Inventory Management Logic**
 
-- When a new order is created, the system should check the available quantity in inventory.
-- If the ordered quantity exceeds the available quantity, return an error response indicating insufficient stock.
+- When a new order is created, the system will check the available quantity in inventory.
+- If the ordered quantity exceeds the available quantity, it will return an error response indicating **`out of stock`**.
 - Update the inventory quantity and **`inStock`** status based on the ordered quantity:
-  - If the inventory quantity reaches zero, set **`inStock`** to **`false`**.
-  - Otherwise, keep **`inStock`** as **`true`**.
+  - If the inventory quantity reaches zero,  **`inStock`** sets to **`false`**.
+  - Otherwise, **`inStock`** as **`true`**.
