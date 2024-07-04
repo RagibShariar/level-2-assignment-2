@@ -33,7 +33,11 @@ const createOrderToDb = async (orderData: IOrder) => {
 };
 
 // get all orders from database
-const getAllOrdersFromDb = async () => {
+const getAllOrdersFromDb = async (query: Record<string, unknown>) => {
+  if (query?.email) {
+    const result = await Order.find({ email: query.email });
+    return result;
+  }
   const result = await Order.find();
   return result;
 };
