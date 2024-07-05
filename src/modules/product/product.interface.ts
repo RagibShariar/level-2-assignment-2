@@ -17,3 +17,6 @@ export type IProduct = {
   variants: Variant[]; // array of objects
   inventory: Inventory;
 };
+
+//
+// export type IProduct = z.infer<typeof productValidationSchema>;
