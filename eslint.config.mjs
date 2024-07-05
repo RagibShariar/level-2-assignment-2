@@ -21,8 +21,8 @@ export default [
     },
   },
   pluginJs.configs.recommended,
-  // ...tseslint.configs.recommended,
-  ...tseslint.configs.strict,
+  ...tseslint.configs.recommended,
+  // ...tseslint.configs.strict,
 
   {
     rules: {
