@@ -14,10 +14,6 @@ export default [
   { files: ["src/**/*.{js,mjs,cjs,ts}"] },
   {
     languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: true,
-      },
       globals: {
         ...globals.browser,
         ...globals.node,
